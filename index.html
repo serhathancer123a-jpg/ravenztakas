@@ -9,17 +9,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
         
-        :root {
-            --zombie-green: #22c55e;
-        }
-        
-        body {
-            font-family: 'VT323', monospace;
-        }
-        
-        .header-font {
-            font-family: 'Press Start 2P', cursive;
-        }
+        body { font-family: 'VT323', monospace; }
+        .header-font { font-family: 'Press Start 2P', cursive; }
 
         .zombie-bg {
             background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
@@ -29,188 +20,133 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        .trader-option {
+            transition: all 0.3s ease;
         }
         
-        .profit {
-            animation: profitPop 0.6s ease;
+        .trader-option.active {
+            border-color: #22c55e !important;
+            box-shadow: 0 0 30px #22c55e;
+            background-color: #052e16;
         }
         
+        .profit { animation: profitPop 0.6s ease; }
         @keyframes profitPop {
             0% { transform: scale(0.8); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-        
-        .scanline {
-            position: relative;
-        }
-        
-        .scanline::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(34, 197, 94, 0.15) 50%
-            );
-            background-size: 100% 6px;
-            pointer-events: none;
-            animation: scan 4s linear infinite;
-            z-index: 10;
-        }
     </style>
 </head>
 <body class="zombie-bg text-white min-h-screen">
+
     <!-- HEADER -->
     <div class="border-b border-emerald-500 bg-black py-4 sticky top-0 z-50 shadow-xl">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-emerald-500 text-black rounded-full flex items-center justify-center text-3xl rotate-12">
-                    🧟
-                </div>
+                <div class="w-12 h-12 bg-emerald-500 text-black rounded-full flex items-center justify-center text-3xl rotate-12">🧟</div>
                 <div>
                     <h1 class="header-font text-4xl tracking-widest text-emerald-400">4. SEVİYE</h1>
                     <p class="text-emerald-300 text-xl -mt-2">TRADER TAKAS KALKÜLATÖRÜ</p>
                 </div>
-                <div class="ml-6 px-4 py-1 bg-red-600 text-xs font-bold rounded-full animate-pulse flex items-center gap-2">
-                    <i class="fa-solid fa-skull"></i>
-                    Raven Z  • 
-                </div>
+                <div class="ml-6 px-4 py-1 bg-red-600 text-xs font-bold rounded-full animate-pulse">Raven Z</div>
             </div>
             
             <div class="flex items-center gap-8 text-sm">
                 <a href="#" onclick="showTab(0)" class="tab-button active flex items-center gap-2 hover:text-emerald-400">
-                    <i class="fa-solid fa-calculator"></i>
-                    <span>HESAP MAKİNESİ</span>
+                    <i class="fa-solid fa-calculator"></i><span>HESAP MAKİNESİ</span>
                 </a>
                 <a href="#" onclick="showTab(1)" class="tab-button flex items-center gap-2 hover:text-emerald-400">
-                    <i class="fa-solid fa-list"></i>
-                    <span>TÜM FİYATLAR</span>
+                    <i class="fa-solid fa-list"></i><span>TÜM FİYATLAR</span>
                 </a>
-                <div class="flex items-center bg-zinc-900 px-6 py-2 rounded-2xl border border-emerald-500">
-                    <i class="fa-solid fa-coins text-emerald-400 mr-2"></i>
-                    <span id="total-scrap-display" class="font-bold text-2xl text-emerald-400">0</span>
-                    <span class="ml-2 text-emerald-300">Girilen Hurda Metal</span>
-                </div>
-            </div>
-            
-            <div class="text-xs text-emerald-300 flex items-center gap-2">
-                <div class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
-                RAVEN Z
+                <a href="#" onclick="showTab(2)" class="tab-button flex items-center gap-2 hover:text-emerald-400">
+                    <i class="fa-solid fa-file-lines"></i><span>YAPILAN TRADELER</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="max-w-7xl mx-auto px-6 py-8">
-        
-        <!-- TAB 1: HESAP MAKİNESİ -->
+
+        <!-- ====================== TAB 0: HESAP MAKİNESİ ====================== -->
         <div id="tab-0" class="tab-content">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                
-                <!-- SOL: ÜRÜN SEÇİMİ -->
+                <!-- Sol - Verdiğin Ürün -->
                 <div class="lg:col-span-5">
                     <div class="card bg-zinc-900 border border-emerald-500 rounded-3xl p-8 h-full">
                         <h2 class="text-3xl header-font mb-6 flex items-center gap-3">
-                            <i class="fa-solid fa-gun"></i>
-                            VERDİĞİN ÜRÜN
+                            <i class="fa-solid fa-gun"></i> VERDİĞİN ÜRÜN
                         </h2>
-                        
-                        <div class="mb-4">
-                            <label class="text-emerald-300 text-xl mb-2 block">4. Seviye Trader’dan Alış Fiyatı</label>
-                            <select id="item-select" 
-                                    class="w-full bg-black border-2 border-emerald-500 text-white text-2xl p-5 rounded-2xl focus:outline-none focus:border-emerald-400 transition-colors">
-                                <optgroup label="🔫 SİLAHLAR">
-                                    <option value="889" data-name="SNS Pistol">SNS Pistol — 889 Hurda Metal</option>
-                                    <option value="1216" data-name="Pistol MK2">Pistol MK2 — 1216 Hurda Metal</option>
-                                    <option value="1123" data-name="Heavy Pistol">Heavy Pistol — 1123 Hurda Metal</option>
-                                    <option value="1170" data-name="Combat Pistol">Combat Pistol — 1170 Hurda Metal</option>
-                                    <option value="1193" data-name="AP Pistol">AP Pistol — 1193 Hurda Metal</option>
-                                    <option value="1357" data-name="Pistol.50">Pistol.50 — 1357 Hurda Metal</option>
-                                    <option value="1404" data-name="Revolver">Revolver — 1404 Hurda Metal</option>
-                                    <option value="1521" data-name="Revolver MK2">Revolver MK2 — 1521 Hurda Metal</option>
-                                    <option value="982" data-name="Ceramic Pistol">Ceramic Pistol — 982 Hurda Metal</option>
-                                    <option value="1287" data-name="Python">Python — 1287 Hurda Metal</option>
-                                    <option value="1684" data-name="Micro SMG">Micro SMG — 1684 Hurda Metal</option>
-                                    <option value="1825" data-name="SMG">SMG — 1825 Hurda Metal</option>
-                                    <option value="1614" data-name="Tactical SMG">Tactical SMG — 1614 Hurda Metal</option>
-                                    <option value="1989" data-name="SMG Mk2">SMG Mk2 — 1989 Hurda Metal</option>
-                                    <option value="1731" data-name="Machine Pistol">Machine Pistol — 1731 Hurda Metal</option>
-                                    <option value="1638" data-name="Mini SMG">Mini SMG — 1638 Hurda Metal</option>
-                                    <option value="1591" data-name="Pump Shotgun">Pump Shotgun — 1591 Hurda Metal</option>
-                                    <option value="1755" data-name="Pump Shotgun MK2">Pump Shotgun MK2 — 1755 Hurda Metal</option>
-                                    <option value="1450" data-name="Sawn Off Shotgun">Sawn Off Shotgun — 1450 Hurda Metal</option>
-                                    <option value="1684" data-name="Bullpup Shotgun">Bullpup Shotgun — 1684 Hurda Metal</option>
-                                    <option value="1521" data-name="Hunter Shotgun">Hunter Shotgun — 1521 Hurda Metal</option>
-                                    <option value="2059" data-name="Compact Rifle">Compact Rifle — 2059 Hurda Metal</option>
-                                    <option value="2223" data-name="Assault Rifle">Assault Rifle — 2223 Hurda Metal</option>
-                                    <option value="2152" data-name="Carbine Rifle">Carbine Rifle — 2152 Hurda Metal</option>
-                                    <option value="2106" data-name="Bullpup Rifle">Bullpup Rifle — 2106 Hurda Metal</option>
-                                    <option value="2199" data-name="Special Carbine">Special Carbine — 2199 Hurda Metal</option>
-                                    <option value="2386" data-name="Special Carbine MK2">Special Carbine MK2 — 2386 Hurda Metal</option>
-                                    <option value="2620" data-name="HK G3">HK G3 — 2620 Hurda Metal</option>
-                                    <option value="3088" data-name="MK 18">MK 18 — 3088 Hurda Metal</option>
-                                    <option value="2854" data-name="SIG MCX">SIG MCX — 2854 Hurda Metal</option>
-                                    <option value="2340" data-name="Carbine Rifle MK2">Carbine Rifle MK2 — 2340 Hurda Metal</option>
-                                    <option value="2574" data-name="Precision Rifle">Precision Rifle — 2574 Hurda Metal</option>
-                                </optgroup>
-                                <optgroup label="🔧 SİLAH EKLENTİLERİ">
-                                    <option value="421" data-name="Suppresor">Suppresor — 421 Hurda Metal</option>
-                                    <option value="585" data-name="Tactical Suppresor">Tactical Suppresor — 585 Hurda Metal</option>
-                                    <option value="280" data-name="Extended Pistol Clip">Extended Pistol Clip — 280 Hurda Metal</option>
-                                    <option value="327" data-name="Extended SMG Clip">Extended SMG Clip — 327 Hurda Metal</option>
-                                    <option value="374" data-name="Extended Rifle Clip">Extended Rifle Clip — 374 Hurda Metal</option>
-                                    <option value="351" data-name="Extended Shotgun Clip">Extended Shotgun Clip — 351 Hurda Metal</option>
-                                </optgroup>
-                                <optgroup label="🛡️ GİYİLEBİLİR EKLENTİLER">
-                                    <option value="655" data-name="Bulletproof Vest">Bulletproof Vest — 655 Hurda Metal</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        
-                        <div id="selected-item-info" class="bg-black p-6 rounded-2xl border border-emerald-400 flex justify-between items-center text-2xl">
+                        <select id="item-select" class="w-full bg-black border-2 border-emerald-500 text-white text-2xl p-5 rounded-2xl focus:outline-none focus:border-emerald-400">
+                            <optgroup label="🔫 SİLAHLAR">
+                                <option value="889" data-name="SNS Pistol">SNS Pistol — 889 Hurda Metal</option>
+                                <option value="1216" data-name="Pistol MK2">Pistol MK2 — 1216 Hurda Metal</option>
+                                <option value="1123" data-name="Heavy Pistol">Heavy Pistol — 1123 Hurda Metal</option>
+                                <option value="1170" data-name="Combat Pistol">Combat Pistol — 1170 Hurda Metal</option>
+                                <option value="1193" data-name="AP Pistol">AP Pistol — 1193 Hurda Metal</option>
+                                <option value="1357" data-name="Pistol.50">Pistol.50 — 1357 Hurda Metal</option>
+                                <option value="1404" data-name="Revolver">Revolver — 1404 Hurda Metal</option>
+                                <option value="1521" data-name="Revolver MK2">Revolver MK2 — 1521 Hurda Metal</option>
+                                <option value="982" data-name="Ceramic Pistol">Ceramic Pistol — 982 Hurda Metal</option>
+                                <option value="1287" data-name="Python">Python — 1287 Hurda Metal</option>
+                                <option value="1684" data-name="Micro SMG">Micro SMG — 1684 Hurda Metal</option>
+                                <option value="1825" data-name="SMG">SMG — 1825 Hurda Metal</option>
+                                <option value="1614" data-name="Tactical SMG">Tactical SMG — 1614 Hurda Metal</option>
+                                <option value="1989" data-name="SMG Mk2">SMG Mk2 — 1989 Hurda Metal</option>
+                                <option value="1731" data-name="Machine Pistol">Machine Pistol — 1731 Hurda Metal</option>
+                                <option value="1638" data-name="Mini SMG">Mini SMG — 1638 Hurda Metal</option>
+                                <option value="1591" data-name="Pump Shotgun">Pump Shotgun — 1591 Hurda Metal</option>
+                                <option value="1755" data-name="Pump Shotgun MK2">Pump Shotgun MK2 — 1755 Hurda Metal</option>
+                                <option value="1450" data-name="Sawn Off Shotgun">Sawn Off Shotgun — 1450 Hurda Metal</option>
+                                <option value="1684" data-name="Bullpup Shotgun">Bullpup Shotgun — 1684 Hurda Metal</option>
+                                <option value="1521" data-name="Hunter Shotgun">Hunter Shotgun — 1521 Hurda Metal</option>
+                                <option value="2059" data-name="Compact Rifle">Compact Rifle — 2059 Hurda Metal</option>
+                                <option value="2223" data-name="Assault Rifle">Assault Rifle — 2223 Hurda Metal</option>
+                                <option value="2152" data-name="Carbine Rifle">Carbine Rifle — 2152 Hurda Metal</option>
+                                <option value="2106" data-name="Bullpup Rifle">Bullpup Rifle — 2106 Hurda Metal</option>
+                                <option value="2199" data-name="Special Carbine">Special Carbine — 2199 Hurda Metal</option>
+                                <option value="2386" data-name="Special Carbine MK2">Special Carbine MK2 — 2386 Hurda Metal</option>
+                                <option value="2620" data-name="HK G3">HK G3 — 2620 Hurda Metal</option>
+                                <option value="3088" data-name="MK 18">MK 18 — 3088 Hurda Metal</option>
+                                <option value="2854" data-name="SIG MCX">SIG MCX — 2854 Hurda Metal</option>
+                                <option value="2340" data-name="Carbine Rifle MK2">Carbine Rifle MK2 — 2340 Hurda Metal</option>
+                                <option value="2574" data-name="Precision Rifle">Precision Rifle — 2574 Hurda Metal</option>
+                            </optgroup>
+                            <optgroup label="🔧 SİLAH EKLENTİLERİ">
+                                <option value="421" data-name="Suppresor">Suppresor — 421 Hurda Metal</option>
+                                <option value="585" data-name="Tactical Suppresor">Tactical Suppresor — 585 Hurda Metal</option>
+                                <option value="280" data-name="Extended Pistol Clip">Extended Pistol Clip — 280 Hurda Metal</option>
+                                <option value="327" data-name="Extended SMG Clip">Extended SMG Clip — 327 Hurda Metal</option>
+                                <option value="374" data-name="Extended Rifle Clip">Extended Rifle Clip — 374 Hurda Metal</option>
+                                <option value="351" data-name="Extended Shotgun Clip">Extended Shotgun Clip — 351 Hurda Metal</option>
+                            </optgroup>
+                            <optgroup label="🛡️ GİYİLEBİLİR EKLENTİLER">
+                                <option value="655" data-name="Bulletproof Vest">Bulletproof Vest — 655 Hurda Metal</option>
+                            </optgroup>
+                        </select>
+                        <div id="selected-item-info" class="mt-6 bg-black p-6 rounded-2xl border border-emerald-400 flex justify-between items-center text-2xl">
                             <span id="selected-name" class="text-emerald-300">SNS Pistol</span>
                             <span id="selected-price" class="font-bold text-emerald-400">889 <span class="text-base">Hurda Metal</span></span>
                         </div>
-                        
-                        <div class="mt-8 text-center">
-                            <div class="inline-flex items-center bg-red-900/30 text-red-400 text-sm px-6 py-3 rounded-2xl">
-                                <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>
-                                Karşı tarafa veriyorsun
-                            </div>
-                        </div>
                     </div>
                 </div>
-                
-                <!-- SAĞ: KARŞI TARAFIN VERDİĞİ ÜRÜNLER -->
+
+                <!-- Sağ - Karşı Tarafın Verdiği Ürünler -->
                 <div class="lg:col-span-7">
                     <div class="card bg-zinc-900 border border-emerald-500 rounded-3xl p-8 h-full">
                         <h2 class="text-3xl header-font mb-6 flex items-center gap-3">
-                            <i class="fa-solid fa-boxes-stacked"></i>
-                            KARŞI TARAFIN VERDİĞİ ÜRÜNLER
+                            <i class="fa-solid fa-boxes-stacked"></i> KARŞI TARAFIN VERDİĞİ ÜRÜNLER
                         </h2>
+                        <div id="sellables-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                         
-                        <div id="sellables-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- JS ile doldurulacak -->
-                        </div>
-                        
-                        <button onclick="calculateProfit()"
+                        <button onclick="calculateProfit()" 
                                 class="mt-8 w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-3xl py-7 rounded-3xl transition-all active:scale-95 flex items-center justify-center gap-4">
-                            <i class="fa-solid fa-calculator"></i>
-                            HESAPLA &nbsp; → &nbsp; KAR / ZARAR
+                            <i class="fa-solid fa-calculator"></i> HESAPLA → KAR / ZARAR
                         </button>
-                        
-                        <!-- SONUÇ ALANI -->
+
                         <div id="result-area" class="hidden mt-8 bg-black border-4 border-dashed border-emerald-400 rounded-3xl p-8 text-center">
                             <div id="result-profit" class="text-6xl font-bold mb-2"></div>
                             <div id="result-text" class="text-4xl mb-6"></div>
-                            
                             <div class="grid grid-cols-3 gap-4 text-left">
                                 <div class="bg-zinc-800 p-4 rounded-2xl">
                                     <p class="text-emerald-300 text-sm">Ürünün maliyeti</p>
@@ -225,23 +161,19 @@
                                     <p id="result-net" class="text-3xl font-bold"></p>
                                 </div>
                             </div>
-                            
-                            <div onclick="resetCalculator()" 
-                                 class="mt-8 text-emerald-400 hover:text-white cursor-pointer flex items-center justify-center gap-2 text-xl">
-                                <i class="fa-solid fa-rotate-right"></i>
-                                <span>YENİDEN HESAPLA</span>
+                            <div onclick="resetCalculator()" class="mt-8 text-emerald-400 hover:text-white cursor-pointer flex items-center justify-center gap-2 text-xl">
+                                <i class="fa-solid fa-rotate-right"></i> YENİDEN HESAPLA
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- TAB 2: TÜM FİYATLAR -->
+
+        <!-- ====================== TAB 1: TÜM FİYATLAR ====================== -->
         <div id="tab-1" class="tab-content hidden">
             <div class="bg-zinc-900 border border-emerald-500 rounded-3xl p-8">
                 <h2 class="text-4xl header-font mb-8 text-center">4. SEVİYE TRADER FİYAT LİSTESİ</h2>
-                
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
@@ -250,63 +182,143 @@
                                 <th class="pb-4 text-right px-6">HURDA METAL</th>
                             </tr>
                         </thead>
-                        <tbody id="price-table" class="text-xl divide-y divide-zinc-700">
-                            <!-- JS ile doldurulacak -->
-                        </tbody>
+                        <tbody id="price-table" class="text-xl divide-y divide-zinc-700"></tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div class="text-center py-8 text-emerald-300/50 text-sm border-t border-emerald-900">
-         Raven Z  • 4. Seviye Trader •
-        <span class="text-emerald-400">Made By Serhat</span>
+
+        <!-- ====================== TAB 2: YAPILAN TRADELER ====================== -->
+        <div id="tab-2" class="tab-content hidden">
+            <div class="card bg-zinc-900 border border-emerald-500 rounded-3xl p-10">
+                <h2 class="text-4xl header-font mb-10 text-center flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-lines"></i> YAPILAN TRADELER
+                </h2>
+
+                <div class="mb-10">
+                    <label class="text-emerald-300 text-2xl mb-6 block text-center">Trade'i Yapan Kişi</label>
+                    <div class="flex justify-center gap-10">
+                        <div onclick="selectTrader(this, 'İlayda')" id="trader-ilayda"
+                             class="trader-option cursor-pointer bg-zinc-800 text-3xl px-16 py-8 rounded-3xl border-4 border-transparent flex items-center gap-4">
+                            👩‍💼 İlayda
+                        </div>
+                        <div onclick="selectTrader(this, 'Serhat')" id="trader-serhat"
+                             class="trader-option cursor-pointer bg-zinc-800 text-3xl px-16 py-8 rounded-3xl border-4 border-transparent flex items-center gap-4">
+                            👨‍💼 Serhat
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="text-emerald-300 text-2xl mb-4 block">Verdiğin Silah / Ürün</label>
+                    <select id="trade-item-select" class="w-full bg-black border-2 border-emerald-500 text-white text-2xl p-6 rounded-2xl">
+                        <optgroup label="🔫 SİLAHLAR">
+                            <option value="889" data-name="SNS Pistol">SNS Pistol — 889</option>
+                            <option value="1216" data-name="Pistol MK2">Pistol MK2 — 1216</option>
+                            <option value="1123" data-name="Heavy Pistol">Heavy Pistol — 1123</option>
+                            <option value="1170" data-name="Combat Pistol">Combat Pistol — 1170</option>
+                            <option value="1193" data-name="AP Pistol">AP Pistol — 1193</option>
+                            <option value="1357" data-name="Pistol.50">Pistol.50 — 1357</option>
+                            <option value="1404" data-name="Revolver">Revolver — 1404</option>
+                            <option value="1521" data-name="Revolver MK2">Revolver MK2 — 1521</option>
+                            <option value="982" data-name="Ceramic Pistol">Ceramic Pistol — 982</option>
+                            <option value="1287" data-name="Python">Python — 1287</option>
+                            <option value="1684" data-name="Micro SMG">Micro SMG — 1684</option>
+                            <option value="1825" data-name="SMG">SMG — 1825</option>
+                            <option value="1614" data-name="Tactical SMG">Tactical SMG — 1614</option>
+                            <option value="1989" data-name="SMG Mk2">SMG Mk2 — 1989</option>
+                            <option value="1731" data-name="Machine Pistol">Machine Pistol — 1731</option>
+                            <option value="1638" data-name="Mini SMG">Mini SMG — 1638</option>
+                            <option value="1591" data-name="Pump Shotgun">Pump Shotgun — 1591</option>
+                            <option value="1755" data-name="Pump Shotgun MK2">Pump Shotgun MK2 — 1755</option>
+                            <option value="1450" data-name="Sawn Off Shotgun">Sawn Off Shotgun — 1450</option>
+                            <option value="1684" data-name="Bullpup Shotgun">Bullpup Shotgun — 1684</option>
+                            <option value="1521" data-name="Hunter Shotgun">Hunter Shotgun — 1521</option>
+                            <option value="2059" data-name="Compact Rifle">Compact Rifle — 2059</option>
+                            <option value="2223" data-name="Assault Rifle">Assault Rifle — 2223</option>
+                            <option value="2152" data-name="Carbine Rifle">Carbine Rifle — 2152</option>
+                            <option value="2106" data-name="Bullpup Rifle">Bullpup Rifle — 2106</option>
+                            <option value="2199" data-name="Special Carbine">Special Carbine — 2199</option>
+                            <option value="2386" data-name="Special Carbine MK2">Special Carbine MK2 — 2386</option>
+                            <option value="2620" data-name="HK G3">HK G3 — 2620</option>
+                            <option value="3088" data-name="MK 18">MK 18 — 3088</option>
+                            <option value="2854" data-name="SIG MCX">SIG MCX — 2854</option>
+                            <option value="2340" data-name="Carbine Rifle MK2">Carbine Rifle MK2 — 2340</option>
+                            <option value="2574" data-name="Precision Rifle">Precision Rifle — 2574</option>
+                        </optgroup>
+                        <optgroup label="🔧 SİLAH EKLENTİLERİ">
+                            <option value="421" data-name="Suppresor">Suppresor — 421</option>
+                            <option value="585" data-name="Tactical Suppresor">Tactical Suppresor — 585</option>
+                            <option value="280" data-name="Extended Pistol Clip">Extended Pistol Clip — 280</option>
+                            <option value="327" data-name="Extended SMG Clip">Extended SMG Clip — 327</option>
+                            <option value="374" data-name="Extended Rifle Clip">Extended Rifle Clip — 374</option>
+                            <option value="351" data-name="Extended Shotgun Clip">Extended Shotgun Clip — 351</option>
+                        </optgroup>
+                        <optgroup label="🛡️ GİYİLEBİLİR EKLENTİLER">
+                            <option value="655" data-name="Bulletproof Vest">Bulletproof Vest — 655</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="mb-10">
+                    <label class="text-emerald-300 text-2xl mb-6 block">Karşı Taraftan Aldığın Malzemeler</label>
+                    <div id="trade-sellables-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </div>
+
+                <button onclick="sendTradeToDiscord()" 
+                        class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-3xl py-8 rounded-3xl transition-all flex items-center justify-center gap-4">
+                    <i class="fa-solid fa-paper-plane"></i> TRADE'İ DISCORD'A GÖNDER
+                </button>
+
+                <div id="trade-success" class="hidden mt-8 text-center bg-emerald-900 border border-emerald-400 py-6 rounded-3xl text-3xl">
+                    ✅ Trade başarıyla Discord'a gönderildi!
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // TÜM VERİLER (kopyala-yapıştır yaptığın liste)
+        // ====================== TÜM VERİLER ======================
         const buyItems = [
-            { name: "SNS Pistol", price: 889, category: "silah" },
-            { name: "Pistol MK2", price: 1216, category: "silah" },
-            { name: "Heavy Pistol", price: 1123, category: "silah" },
-            { name: "Combat Pistol", price: 1170, category: "silah" },
-            { name: "AP Pistol", price: 1193, category: "silah" },
-            { name: "Pistol.50", price: 1357, category: "silah" },
-            { name: "Revolver", price: 1404, category: "silah" },
-            { name: "Revolver MK2", price: 1521, category: "silah" },
-            { name: "Ceramic Pistol", price: 982, category: "silah" },
-            { name: "Python", price: 1287, category: "silah" },
-            { name: "Micro SMG", price: 1684, category: "silah" },
-            { name: "SMG", price: 1825, category: "silah" },
-            { name: "Tactical SMG", price: 1614, category: "silah" },
-            { name: "SMG Mk2", price: 1989, category: "silah" },
-            { name: "Machine Pistol", price: 1731, category: "silah" },
-            { name: "Mini SMG", price: 1638, category: "silah" },
-            { name: "Pump Shotgun", price: 1591, category: "silah" },
-            { name: "Pump Shotgun MK2", price: 1755, category: "silah" },
-            { name: "Sawn Off Shotgun", price: 1450, category: "silah" },
-            { name: "Bullpup Shotgun", price: 1684, category: "silah" },
-            { name: "Hunter Shotgun", price: 1521, category: "silah" },
-            { name: "Compact Rifle", price: 2059, category: "silah" },
-            { name: "Assault Rifle", price: 2223, category: "silah" },
-            { name: "Carbine Rifle", price: 2152, category: "silah" },
-            { name: "Bullpup Rifle", price: 2106, category: "silah" },
-            { name: "Special Carbine", price: 2199, category: "silah" },
-            { name: "Special Carbine MK2", price: 2386, category: "silah" },
-            { name: "HK G3", price: 2620, category: "silah" },
-            { name: "MK 18", price: 3088, category: "silah" },
-            { name: "SIG MCX", price: 2854, category: "silah" },
-            { name: "Carbine Rifle MK2", price: 2340, category: "silah" },
-            { name: "Precision Rifle", price: 2574, category: "silah" },
-            { name: "Suppresor", price: 421, category: "eklenti" },
-            { name: "Tactical Suppresor", price: 585, category: "eklenti" },
-            { name: "Extended Pistol Clip", price: 280, category: "eklenti" },
-            { name: "Extended SMG Clip", price: 327, category: "eklenti" },
-            { name: "Extended Rifle Clip", price: 374, category: "eklenti" },
-            { name: "Extended Shotgun Clip", price: 351, category: "eklenti" },
-            { name: "Bulletproof Vest", price: 655, category: "giyilebilir" }
+            { name: "SNS Pistol", price: 889 },
+            { name: "Pistol MK2", price: 1216 },
+            { name: "Heavy Pistol", price: 1123 },
+            { name: "Combat Pistol", price: 1170 },
+            { name: "AP Pistol", price: 1193 },
+            { name: "Pistol.50", price: 1357 },
+            { name: "Revolver", price: 1404 },
+            { name: "Revolver MK2", price: 1521 },
+            { name: "Ceramic Pistol", price: 982 },
+            { name: "Python", price: 1287 },
+            { name: "Micro SMG", price: 1684 },
+            { name: "SMG", price: 1825 },
+            { name: "Tactical SMG", price: 1614 },
+            { name: "SMG Mk2", price: 1989 },
+            { name: "Machine Pistol", price: 1731 },
+            { name: "Mini SMG", price: 1638 },
+            { name: "Pump Shotgun", price: 1591 },
+            { name: "Pump Shotgun MK2", price: 1755 },
+            { name: "Sawn Off Shotgun", price: 1450 },
+            { name: "Bullpup Shotgun", price: 1684 },
+            { name: "Hunter Shotgun", price: 1521 },
+            { name: "Compact Rifle", price: 2059 },
+            { name: "Assault Rifle", price: 2223 },
+            { name: "Carbine Rifle", price: 2152 },
+            { name: "Bullpup Rifle", price: 2106 },
+            { name: "Special Carbine", price: 2199 },
+            { name: "Special Carbine MK2", price: 2386 },
+            { name: "HK G3", price: 2620 },
+            { name: "MK 18", price: 3088 },
+            { name: "SIG MCX", price: 2854 },
+            { name: "Carbine Rifle MK2", price: 2340 },
+            { name: "Precision Rifle", price: 2574 },
+            { name: "Suppresor", price: 421 },
+            { name: "Tactical Suppresor", price: 585 },
+            { name: "Extended Pistol Clip", price: 280 },
+            { name: "Extended SMG Clip", price: 327 },
+            { name: "Extended Rifle Clip", price: 374 },
+            { name: "Extended Shotgun Clip", price: 351 },
+            { name: "Bulletproof Vest", price: 655 }
         ];
 
         const sellables = [
@@ -317,22 +329,31 @@
             { name: "Tetik Mekanizması", price: 109 }
         ];
 
-        // Select değiştiğinde bilgi güncelle
-        function updateSelectedInfo() {
-            const select = document.getElementById('item-select');
-            const selectedOption = select.options[select.selectedIndex];
+        // ====================== SABİT DISCORD WEBHOOK ======================
+        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1488431207518703726/e4nKgqO4ecxrDZllv3qsf6DBGwhBel3QUBq4ssXaYTnAAVnizjbS08D-5aVHkOL8tt-r";   // ← BURAYA YAPİŞTIR
+
+        let selectedTrader = "";
+
+        // ====================== TAB SİSTEMİ ======================
+        function showTab(n) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById(`tab-${n}`).classList.remove('hidden');
             
-            document.getElementById('selected-name').textContent = selectedOption.getAttribute('data-name');
-            document.getElementById('selected-price').innerHTML = `
-                ${selectedOption.value} <span class="text-base">Hurda Metal</span>
-            `;
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active', 'text-emerald-400'));
+            document.querySelectorAll('.tab-button')[n].classList.add('active', 'text-emerald-400');
         }
 
-        // Satılabilir ürünleri oluştur
+        // ====================== HESAP MAKİNESİ FONKSİYONLARI ======================
+        function updateSelectedInfo() {
+            const select = document.getElementById('item-select');
+            const option = select.options[select.selectedIndex];
+            document.getElementById('selected-name').textContent = option.getAttribute('data-name');
+            document.getElementById('selected-price').innerHTML = `${option.value} <span class="text-base">Hurda Metal</span>`;
+        }
+
         function renderSellables() {
             const container = document.getElementById('sellables-container');
             container.innerHTML = '';
-            
             sellables.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = "bg-zinc-800 rounded-2xl p-5 border border-zinc-700 hover:border-emerald-400 transition-colors";
@@ -342,75 +363,31 @@
                             <p class="text-xl">${item.name}</p>
                             <p class="text-emerald-400 text-sm">${item.price} Hurda Metal / adet</p>
                         </div>
-                        <input 
-                            type="number" 
-                            id="qty-${index}" 
-                            value="0"
-                            min="0"
-                            class="w-24 text-4xl bg-black text-center border border-emerald-500 focus:border-white rounded-xl p-3 text-emerald-400 font-bold outline-none">
+                        <input type="number" id="qty-${index}" value="0" min="0"
+                               class="w-24 text-4xl bg-black text-center border border-emerald-500 focus:border-white rounded-xl p-3 text-emerald-400 font-bold outline-none">
                     </div>
                 `;
                 container.appendChild(div);
             });
         }
 
-        // Fiyat tablosunu doldur
-        function renderPriceTable() {
-            const tbody = document.getElementById('price-table');
-            tbody.innerHTML = '';
-            
-            buyItems.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-emerald-900/30 transition-colors";
-                tr.innerHTML = `
-                    <td class="px-6 py-5">${item.name}</td>
-                    <td class="px-6 py-5 text-right font-bold text-emerald-400">${item.price}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-            
-            // Satılabilirler bölümünü ayır
-            const sellHeader = document.createElement('tr');
-            sellHeader.innerHTML = `
-                <td colspan="2" class="pt-8 pb-4 px-6 text-emerald-300 text-2xl font-bold border-t-2 border-emerald-500">
-                    💰 SATILABİLEN ÜRÜNLER (Senin sattığın)
-                </td>
-            `;
-            tbody.appendChild(sellHeader);
-            
-            sellables.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-emerald-900/30 transition-colors";
-                tr.innerHTML = `
-                    <td class="px-6 py-5">${item.name}</td>
-                    <td class="px-6 py-5 text-right font-bold text-emerald-400">${item.price}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // HESAPLAMA
         function calculateProfit() {
             const select = document.getElementById('item-select');
             const cost = parseInt(select.value);
             
             let totalReceived = 0;
-            
-            sellables.forEach((item, index) => {
-                const qtyInput = document.getElementById(`qty-${index}`);
-                const qty = parseInt(qtyInput.value) || 0;
-                totalReceived += qty * item.price;
+            sellables.forEach((_, index) => {
+                const qty = parseInt(document.getElementById(`qty-${index}`).value) || 0;
+                totalReceived += qty * sellables[index].price;
             });
-            
+
             const net = totalReceived - cost;
-            
-            // Sonuç ekranı göster
             const resultArea = document.getElementById('result-area');
             resultArea.classList.remove('hidden');
-            
+
             document.getElementById('result-cost').innerHTML = `${cost} <span class="text-base align-bottom">Hurda Metal</span>`;
             document.getElementById('result-received').innerHTML = `${totalReceived} <span class="text-base align-bottom">Hurda Metal</span>`;
-            
+
             const netEl = document.getElementById('result-net');
             if (net >= 0) {
                 netEl.innerHTML = `+${net} <span class="text-base align-bottom">Hurda Metal</span>`;
@@ -423,47 +400,127 @@
                 document.getElementById('result-profit').innerHTML = `❌ <span class="text-red-400">ZARARDASINIZ!</span>`;
                 document.getElementById('result-text').innerHTML = `Bu takasta <span class="text-red-400">${Math.abs(net)}</span> hurda metal zarar ediyorsun!`;
             }
-            
-            // Toplam hurda göstergesini güncelle
-            document.getElementById('total-scrap-display').textContent = totalReceived;
         }
 
         function resetCalculator() {
             document.getElementById('result-area').classList.add('hidden');
-            // Tüm inputları sıfırla
-            sellables.forEach((_, index) => {
-                const input = document.getElementById(`qty-${index}`);
+            sellables.forEach((_, i) => {
+                const input = document.getElementById(`qty-${i}`);
                 if (input) input.value = 0;
             });
         }
 
-        // Tab sistemi
-        function showTab(tabIndex) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
-            document.getElementById(`tab-${tabIndex}`).classList.remove('hidden');
+        // ====================== FİYAT LİSTESİ ======================
+        function renderPriceTable() {
+            const tbody = document.getElementById('price-table');
+            tbody.innerHTML = '';
             
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'text-emerald-400'));
-            const activeBtn = document.querySelectorAll('.tab-button')[tabIndex];
-            if (activeBtn) activeBtn.classList.add('active', 'text-emerald-400');
+            buyItems.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-emerald-900/30 transition-colors";
+                tr.innerHTML = `<td class="px-6 py-5">${item.name}</td><td class="px-6 py-5 text-right font-bold text-emerald-400">${item.price}</td>`;
+                tbody.appendChild(tr);
+            });
+
+            const sellHeader = document.createElement('tr');
+            sellHeader.innerHTML = `<td colspan="2" class="pt-8 pb-4 px-6 text-emerald-300 text-2xl font-bold border-t-2 border-emerald-500">💰 SATILABİLEN ÜRÜNLER (Senin sattığın)</td>`;
+            tbody.appendChild(sellHeader);
+
+            sellables.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-emerald-900/30 transition-colors";
+                tr.innerHTML = `<td class="px-6 py-5">${item.name}</td><td class="px-6 py-5 text-right font-bold text-emerald-400">${item.price}</td>`;
+                tbody.appendChild(tr);
+            });
         }
 
-        // Sayfa yüklendiğinde
-        window.onload = function() {
-            // Tailwind config
-            tailwind.config = {
-                content: [],
-                theme: { extend: {} }
+        // ====================== YAPILAN TRADELER ======================
+        function selectTrader(el, name) {
+            document.querySelectorAll('.trader-option').forEach(e => e.classList.remove('active'));
+            el.classList.add('active');
+            selectedTrader = name;
+        }
+
+        function renderTradeSellables() {
+            const container = document.getElementById('trade-sellables-container');
+            container.innerHTML = '';
+            sellables.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = "bg-zinc-800 rounded-3xl p-6 border border-zinc-700 hover:border-emerald-400";
+                div.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-2xl">${item.name}</p>
+                            <p class="text-emerald-400">${item.price} Hurda Metal</p>
+                        </div>
+                        <input type="number" id="trade-qty-${i}" value="0" min="0" 
+                               class="w-28 text-5xl bg-black text-center border border-emerald-500 rounded-2xl p-4 text-emerald-400 font-bold outline-none">
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        async function sendTradeToDiscord() {
+            if (!selectedTrader) return alert("❌ Lütfen İlayda veya Serhat seçin!");
+
+            const select = document.getElementById('trade-item-select');
+            const itemName = select.options[select.selectedIndex].getAttribute('data-name');
+            const cost = parseInt(select.value);
+
+            let total = 0;
+            const items = [];
+
+            sellables.forEach((item, i) => {
+                const qty = parseInt(document.getElementById(`trade-qty-${i}`).value) || 0;
+                if (qty > 0) {
+                    total += qty * item.price;
+                    items.push(`• ${qty} × ${item.name}`);
+                }
+            });
+
+            const net = total - cost;
+
+            const embed = {
+                title: "🧟 Raven Z - Yeni Trade Kaydı",
+                color: net >= 0 ? 0x22c55e : 0xef4444,
+                fields: [
+                    { name: "Trade Yapan", value: selectedTrader, inline: true },
+                    { name: "Verdiği Ürün", value: `${itemName} (${cost} HM)`, inline: true },
+                    { name: "Aldığı Malzemeler", value: items.length ? items.join("\n") : "Hiçbir şey", inline: false },
+                    { name: "Net Kâr/Zarar", value: net >= 0 ? `+${net} Hurda Metal ✅` : `${net} Hurda Metal ❌`, inline: false }
+                ],
+                footer: { text: "4. Seviye Trader • Raven Z" }
             };
+
+            try {
+                await fetch(DISCORD_WEBHOOK, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+                document.getElementById('trade-success').classList.remove('hidden');
+                setTimeout(() => document.getElementById('trade-success').classList.add('hidden'), 5000);
+            } catch (e) {
+                alert("Discord gönderim hatası! Webhook linkini kontrol et.");
+            }
+        }
+
+        // ====================== SAYFA YÜKLENDİĞİNDE ======================
+        window.onload = () => {
+            // Render tüm sekmeler
+            renderSellables();           // Hesap Makinesi
+            renderPriceTable();          // Tüm Fiyatlar
+            renderTradeSellables();      // Yapılan Tradeler
             
             // Select listener
             document.getElementById('item-select').addEventListener('change', updateSelectedInfo);
-            
-            // Render fonksiyonları
-            renderSellables();
-            renderPriceTable();
             updateSelectedInfo();
+
+            // Varsayılan sekme
+            showTab(0);
             
-            console.log('%c✅ 4. Seviye Trader Hesaplayıcı başarıyla yüklendi!', 'color:#22c55e; font-size:18px; font-family:monospace');
+            console.log('%c✅ Raven Z Trader Kalkülatörü - Tüm sekmeler TAM ÇALIŞIYOR!', 'color:#22c55e; font-size:18px');
         };
     </script>
 </body>
