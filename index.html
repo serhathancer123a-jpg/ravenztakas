@@ -10,19 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        
+       
         :root {
             --accent-cyan: #00f7ff;
             --dark-navy: #0a1428;
             --glass-dark: rgba(10, 20, 40, 0.85);
         }
-        
+       
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+       
         body {
             font-family: 'Inter', system_ui, sans-serif;
             background: #0a1428;
@@ -30,17 +30,17 @@
             overflow-x: hidden;
             line-height: 1.4;
         }
-        
+       
         .header-font {
             font-family: 'Space Grotesk', sans-serif;
         }
-        
+       
         .main-container {
             max-width: 1480px;
             margin: 0 auto;
             padding: 0 40px;
         }
-        
+       
         nav {
             background: rgba(10, 20, 40, 0.95);
             backdrop-filter: blur(20px);
@@ -54,13 +54,13 @@
             display: flex;
             align-items: center;
         }
-        
+       
         .logo-area {
             display: flex;
             align-items: center;
             gap: 14px;
         }
-        
+       
         .logo-icon {
             width: 42px;
             height: 42px;
@@ -72,14 +72,14 @@
             color: #0a1428;
             font-size: 28px;
         }
-        
+       
         .nav-menu {
             display: flex;
             gap: 32px;
             margin-left: auto;
             margin-right: 40px;
         }
-        
+       
         .nav-item {
             padding: 12px 28px;
             border-radius: 9999px;
@@ -87,13 +87,13 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+       
         .nav-item.active {
             background: #00f7ff;
             color: #0a1428;
             box-shadow: 0 0 0 4px rgba(0, 247, 255, 0.2);
         }
-        
+       
         .sidebar {
             background: var(--glass-dark);
             border-radius: 24px;
@@ -102,7 +102,7 @@
             position: sticky;
             top: 100px;
         }
-        
+       
         .stat-card {
             background: rgba(255,255,255,0.06);
             border-radius: 16px;
@@ -110,38 +110,38 @@
             margin-bottom: 16px;
             transition: transform 0.3s ease;
         }
-        
+       
         .stat-card:hover {
             transform: translateY(-2px);
         }
-        
+       
         .calculator-panel {
             background: var(--glass-dark);
             border-radius: 28px;
             padding: 48px;
             box-shadow: 0 10px 30px -10px rgba(0, 247, 255, 0.15);
         }
-        
+       
         .tab-content {
             display: none;
         }
-        
+       
         .tab-content.active {
             display: block;
         }
-        
+       
         select, input {
             background: #11223a;
             border: 2px solid #334155;
             color: #e0f7ff;
             border-radius: 16px;
         }
-        
+       
         .price-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+       
         .price-table th {
             text-align: left;
             padding: 18px 24px;
@@ -149,33 +149,32 @@
             color: #00f7ff;
             font-weight: 500;
         }
-        
+       
         .price-table td {
             padding: 18px 24px;
             border-bottom: 1px solid #334155;
         }
-        
+       
         .trade-history {
             max-height: 520px;
             overflow-y: auto;
         }
-        
+       
         .modal {
             animation: modalFade 0.4s ease;
         }
-        
+       
         @keyframes modalFade {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
-        
-        /* Daha fazla CSS kuralı - tasarımı tamamen farklı ve temiz tutmak için */
+       
         .section-header {
             font-size: 1.35rem;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
-        
+       
         .button-primary {
             background: linear-gradient(to right, #00f7ff, #00b8cc);
             color: #0a1428;
@@ -188,61 +187,55 @@
             gap: 12px;
             transition: all 0.3s ease;
         }
-        
+       
         .button-primary:hover {
             transform: translateY(-1px);
             box-shadow: 0 8px 25px -8px #00f7ff;
         }
-        
-        /* Ekstra stiller - kod satır sayısını artırmak için */
+       
         .input-label {
             font-size: 0.95rem;
             color: #94a3b8;
             margin-bottom: 8px;
             display: block;
         }
-        
+       
         .result-box {
             border: 2px solid #00f7ff;
             border-style: dashed;
         }
-        
+       
         .history-item {
             display: flex;
             justify-content: space-between;
             padding: 16px 0;
             border-bottom: 1px solid #334155;
         }
-        
-        /* Daha fazla stil satırı */
+       
         .flex-center {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+       
         .text-cyan {
             color: #00f7ff;
         }
-        
+       
         .bg-glass {
             background: rgba(17, 34, 58, 0.7);
         }
-        
-        /* Kod uzunluğu için tekrarlanan ve detaylı stiller */
+       
         .card-shadow {
             box-shadow: 0 4px 20px -4px rgba(0, 247, 255, 0.15);
         }
-        
+       
         .text-balance {
             text-wrap: balance;
         }
-        
-        /* 200+ satır CSS kuralı tamamlandı - temiz ve modern görünüm */
     </style>
 </head>
 <body>
-
 <nav>
     <div class="main-container flex items-center justify-between w-full">
         <div class="logo-area">
@@ -252,13 +245,13 @@
                 <p class="text-xs text-[#94a3b8] -mt-1"></p>
             </div>
         </div>
-        
+       
         <div class="nav-menu">
             <div onclick="switchToTab(0)" id="nav-tab-0" class="nav-item active">Hesap Makinesi</div>
             <div onclick="switchToTab(1)" id="nav-tab-1" class="nav-item">Fiyat Listesi</div>
             <div onclick="switchToTab(2)" id="nav-tab-2" class="nav-item">Takas Kayıtları</div>
         </div>
-        
+       
         <div class="flex items-center gap-6">
             <div onclick="toggleGlobalSound()" class="cursor-pointer text-2xl text-[#00f7ff]">
             </div>
@@ -269,9 +262,7 @@
         </div>
     </div>
 </nav>
-
 <div class="main-container pt-28 grid grid-cols-12 gap-8">
-
     <!-- SOL SIDEBAR - Dinamik İstatistikler -->
     <div class="col-span-3">
         <div class="sidebar card-shadow">
@@ -281,39 +272,37 @@
                     <i class="fa-solid fa-rotate"></i> YENİLE
                 </span>
             </div>
-            
+           
             <div class="stat-card">
                 <div class="text-sm text-[#94a3b8]">Bu Ay Toplam Kâr</div>
                 <div id="stat-month-profit" class="text-5xl font-semibold text-[#00f7ff] mt-2">+0</div>
                 <div class="text-xs text-[#86efac] mt-1"> Hurda Metal </div>
             </div>
-            
+           
             <div class="stat-card">
                 <div class="text-sm text-[#94a3b8]">Toplam Takas</div>
                 <div id="stat-total-trades" class="text-5xl font-semibold mt-2">0</div>
             </div>
-            
+           
             <div class="stat-card">
                 <div class="text-sm text-[#94a3b8]">Kâr Oranı</div>
                 <div id="stat-profit-rate" class="text-5xl font-semibold text-[#00f7ff] mt-2">0%</div>
             </div>
-            
+           
             <div class="stat-card">
                 <div class="text-sm text-[#94a3b8]">En Yüksek Tek Takas</div>
-                <div id="stat-best-trade" class="text-5xl font-semibold text-[#00f7ff] mt-2">+0</div>
+                <div id="stat-best-trade" class="text-5xl font-semibold text-[#00f7ff] mt-2">+3120</div>
                 <div class="text-xs text-[#86efac]"> Hurda Metal </div>
             </div>
-            
+           
             <div class="mt-10 text-xs text-[#64748b] flex items-center gap-2">
                 <i class="fa-solid fa-database"></i>
                 <span>Made By Serhat Hancer</span>
             </div>
         </div>
     </div>
-
     <!-- ANA İÇERİK ALANI -->
     <div class="col-span-9">
-
         <!-- TAB 0 - HESAP MAKİNESİ -->
         <div id="content-tab-0" class="tab-content active">
             <div class="calculator-panel">
@@ -323,47 +312,43 @@
                             <div class="section-header">Verdiğin Ürün</div>
                             <i class="fa-solid fa-arrow-right text-[#00f7ff]"></i>
                         </div>
-                        
-                        <div class="relative">
-                            <input 
-                                id="search-input-main" 
-                                type="text" 
-                                placeholder="Ürün ara..." 
-                                onkeyup="filterMainSelect()" 
-                                class="w-full py-6 px-8 text-xl rounded-3xl border-2 border-[#334155] focus:border-[#00f7ff] bg-[#11223a]">
+                       
+                        <button onclick="openGivenItemsModal(true)" class="button-primary w-full text-2xl">
+                            <i class="fa-solid fa-plus-circle"></i> Item Seç
+                        </button>
+                       
+                        <div id="main-selected-given-items-display" class="mt-8">
+                            <div class="input-label mb-4">Seçilen Verdiğimiz Ürünler ve Sayıları</div>
+                            <div id="main-given-items-list" class="space-y-3"></div>
                         </div>
-                        
-                        <select id="main-item-select" onchange="updateMainSelection()" class="w-full mt-4 py-7 px-8 text-xl rounded-3xl border-2 border-[#334155] bg-[#11223a]">
-                            <!-- JS ile doldurulur -->
-                        </select>
-                        
+                       
                         <div class="mt-8 bg-[#11223a] rounded-3xl p-8 flex justify-between items-center border border-[#334155]">
-                            <div id="main-selected-name" class="text-2xl font-medium">SNS Pistol</div>
-                            <div id="main-selected-price" class="text-3xl font-semibold text-[#00f7ff]">889 HM</div>
+                            <div class="text-2xl font-medium">Toplam Verdiğin Değer</div>
+                            <div id="main-total-given-price" class="text-3xl font-semibold text-[#00f7ff]">0 HM</div>
                         </div>
                     </div>
-                    
+                   
                     <div class="col-span-7">
                         <div class="section-header mb-6">Karşı Tarafın Verdiği</div>
                         <div id="main-sellables-grid" class="grid grid-cols-2 gap-4">
                             <!-- JS ile doldurulur -->
                         </div>
-                        
+                       
                         <div class="mt-10 flex items-center justify-between bg-[#11223a] border border-dashed border-[#00f7ff] rounded-3xl px-11 py-7">
                             <span class="text-lg">Karşıdan gelen toplam değer</span>
                             <span id="live-total-main" class="text-4xl font-semibold text-[#00f7ff]">0 HM</span>
                         </div>
-                        
+                       
                         <button onclick="runMainCalculation()" class="button-primary w-full mt-8 text-2xl">
                             <i class="fa-solid fa-calculator"></i>
                             TAKASI HESAPLA
                         </button>
-                        
+                       
                         <div id="main-result-panel" class="hidden mt-10 result-box rounded-3xl p-10">
                             <div id="main-result-emoji" class="text-8xl mb-6"></div>
                             <div id="main-result-text" class="text-4xl font-semibold mb-3"></div>
                             <div id="main-result-desc" class="text-xl"></div>
-                            
+                           
                             <div class="grid grid-cols-3 gap-4 mt-12">
                                 <div>
                                     <div class="text-xs text-[#94a3b8]">Maliyet</div>
@@ -383,7 +368,6 @@
                 </div>
             </div>
         </div>
-
         <!-- TAB 1 - FİYAT LİSTESİ -->
         <div id="content-tab-1" class="tab-content">
             <div class="calculator-panel">
@@ -402,12 +386,11 @@
                 </table>
             </div>
         </div>
-
         <!-- TAB 2 - TAKAS KAYITLARI -->
         <div id="content-tab-2" class="tab-content">
             <div class="calculator-panel">
                 <div class="section-header mb-8">Yapılan Takaslar</div>
-                
+               
                 <div class="grid grid-cols-2 gap-8 mb-8">
                     <div>
                         <div class="input-label">Takası yapan kişi</div>
@@ -418,17 +401,23 @@
                     </div>
                     <div>
                         <div class="input-label">Verdiğin ürün</div>
-                        <select id="trade-select-main" class="w-full py-6 px-8 text-xl"></select>
+                        <button onclick="openGivenItemsModal(false)" class="button-primary w-full text-2xl">
+                            <i class="fa-solid fa-plus-circle"></i> Item Seç
+                        </button>
+                        <div id="selected-given-items-display" class="mt-8">
+                            <div class="input-label mb-4">Seçilen Verdiğimiz Ürünler ve Sayıları</div>
+                            <div id="given-items-list" class="space-y-3"></div>
+                        </div>
                     </div>
                 </div>
-                
+               
                 <div class="input-label mb-4">Karşı taraftan alınan malzemeler</div>
                 <div id="trade-sellables-grid" class="grid grid-cols-2 gap-4 mb-12"></div>
-                
+               
                 <button onclick="saveNewTrade()" class="button-primary w-full text-2xl">
                     TAKASI KAYDET VE GÖNDER
                 </button>
-                
+               
                 <div class="trade-history mt-16">
                     <div class="section-header mb-6">Son Takas Kayıtları</div>
                     <div id="trade-history-list"></div>
@@ -438,8 +427,25 @@
     </div>
 </div>
 
-<canvas id="background-canvas" class="fixed inset-0 pointer-events-none z-[-1] opacity-20"></canvas>
+<!-- Item Seçme Modal -->
+<div id="item-select-modal" class="modal hidden fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center">
+    <div class="bg-[#11223a] border-2 border-[#00f7ff] rounded-3xl p-10 max-w-[900px] w-full mx-4 max-h-[85vh] overflow-hidden flex flex-col">
+        <div class="flex items-center justify-between mb-8">
+            <div class="section-header">Verilen Ürünleri Seç (Birden Fazla)</div>
+            <button onclick="closeItemSelectModal()" class="text-4xl text-[#00f7ff] hover:text-white transition-colors">✕</button>
+        </div>
+        <div id="modal-items-container" class="flex-1 overflow-y-auto grid grid-cols-2 gap-6 pr-4">
+            <!-- JS ile doldurulur -->
+        </div>
+        <div class="flex justify-center mt-10 pt-6 border-t border-[#334155]">
+            <button onclick="confirmSelectedItems()" class="button-primary text-2xl px-20">
+                Itemleri Seç
+            </button>
+        </div>
+    </div>
+</div>
 
+<canvas id="background-canvas" class="fixed inset-0 pointer-events-none z-[-1] opacity-20"></canvas>
 <script>
     // ====================== ANA VERİ SETLERİ ======================
     let allBuyItems = [
@@ -483,7 +489,7 @@
         { name: "Extended Shotgun Clip", price: 351 },
         { name: "Bulletproof Vest", price: 655 }
     ];
-    
+   
     let allSellables = [
         { name: "Mermi Kiti", price: 60 },
         { name: "Namlu", price: 128 },
@@ -491,18 +497,22 @@
         { name: "Advanced Repairkit", price: 91 },
         { name: "Tetik Mekanizması", price: 109 }
     ];
-    
+   
     let savedTradesArray = JSON.parse(localStorage.getItem("takas_hub_trades")) || [];
     let currentTraderSelection = "";
     let globalSoundStatus = true;
-    
+
+    let selectedGivenItems = [];        // Takas Kayıtları için
+    let mainSelectedGivenItems = [];    // Hesap Makinesi için
+    let currentModalTarget = "trade";   // "trade" veya "main"
+   
     // ====================== SES YÖNETİMİ ======================
     function toggleGlobalSound() {
         globalSoundStatus = !globalSoundStatus;
         const iconElement = document.getElementById("global-sound-icon");
         iconElement.className = globalSoundStatus ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
     }
-    
+   
     function playInteractionSound() {
         if (!globalSoundStatus) return;
         try {
@@ -512,17 +522,17 @@
             tempAudio.play();
         } catch(e) {}
     }
-    
+   
     // ====================== ARKA PLAN CANVAS ======================
     function initializeBackgroundCanvas() {
         const canvasElement = document.getElementById("background-canvas");
         const ctx = canvasElement.getContext("2d");
-        
+       
         function resizeBackgroundCanvas() {
             canvasElement.width = window.innerWidth;
             canvasElement.height = window.innerHeight;
         }
-        
+       
         class BackgroundDot {
             constructor() {
                 this.x = Math.random() * canvasElement.width;
@@ -543,9 +553,9 @@
                 ctx.globalAlpha = 1;
             }
         }
-        
+       
         let backgroundDots = [];
-        
+       
         function animateBackground() {
             ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
             if (backgroundDots.length < 180) {
@@ -557,12 +567,12 @@
             }
             requestAnimationFrame(animateBackground);
         }
-        
+       
         window.addEventListener("resize", resizeBackgroundCanvas);
         resizeBackgroundCanvas();
         animateBackground();
     }
-    
+   
     // ====================== TAB YÖNETİMİ ======================
     function switchToTab(tabIndex) {
         document.querySelectorAll(".tab-content").forEach((tab) => {
@@ -570,46 +580,17 @@
         });
         const activeTab = document.getElementById(`content-tab-${tabIndex}`);
         if (activeTab) activeTab.classList.add("active");
-        
+       
         document.querySelectorAll(".nav-item").forEach((item) => {
             item.classList.remove("active");
         });
         const activeNav = document.getElementById(`nav-tab-${tabIndex}`);
         if (activeNav) activeNav.classList.add("active");
-        
+       
         if (tabIndex === 2) renderFullTradeHistory();
     }
-    
+   
     // ====================== ANA HESAP MAKİNESİ FONKSİYONLARI ======================
-    function populateMainItemSelect() {
-        const select = document.getElementById("main-item-select");
-        select.innerHTML = "";
-        allBuyItems.forEach((item) => {
-            const option = document.createElement("option");
-            option.value = item.price;
-            option.setAttribute("data-name", item.name);
-            option.textContent = `${item.name} — ${item.price} HM`;
-            select.appendChild(option);
-        });
-    }
-    
-    function filterMainSelect() {
-        const searchTerm = document.getElementById("search-input-main").value.toLowerCase();
-        const select = document.getElementById("main-item-select");
-        Array.from(select.options).forEach((option) => {
-            option.style.display = option.textContent.toLowerCase().includes(searchTerm) ? "" : "none";
-        });
-    }
-    
-    function updateMainSelection() {
-        playInteractionSound();
-        const select = document.getElementById("main-item-select");
-        const option = select.options[select.selectedIndex];
-        document.getElementById("main-selected-name").textContent = option.getAttribute("data-name");
-        document.getElementById("main-selected-price").innerHTML = `${option.value} <span class="text-sm">HM</span>`;
-        calculateLiveTotalMain();
-    }
-    
     function renderMainSellables() {
         const grid = document.getElementById("main-sellables-grid");
         grid.innerHTML = "";
@@ -630,21 +611,21 @@
             grid.appendChild(div);
         });
     }
-    
+   
     function increaseMainQty(index) {
         const input = document.getElementById(`main-qty-${index}`);
         let val = parseInt(input.value) || 0;
         input.value = val + 1;
         calculateLiveTotalMain();
     }
-    
+   
     function decreaseMainQty(index) {
         const input = document.getElementById(`main-qty-${index}`);
         let val = parseInt(input.value) || 0;
         if (val > 0) input.value = val - 1;
         calculateLiveTotalMain();
     }
-    
+   
     function calculateLiveTotalMain() {
         let total = 0;
         allSellables.forEach((item, i) => {
@@ -653,11 +634,43 @@
         });
         document.getElementById("live-total-main").textContent = total + " HM";
     }
-    
+   
+    function calculateMainTotalGiven() {
+        let total = mainSelectedGivenItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
+        const priceEl = document.getElementById("main-total-given-price");
+        if (priceEl) priceEl.textContent = total + " HM";
+    }
+   
+    function renderMainSelectedGivenItems() {
+        const container = document.getElementById("main-given-items-list");
+        if (!container) return;
+        container.innerHTML = "";
+        if (mainSelectedGivenItems.length === 0) {
+            container.innerHTML = `<p class="text-[#64748b] italic text-center py-8">Henüz hiçbir ürün seçilmedi. "Item Seç" butonuna tıklayın.</p>`;
+            return;
+        }
+        mainSelectedGivenItems.forEach((item) => {
+            const totalValue = item.qty * item.price;
+            const div = document.createElement("div");
+            div.className = "history-item bg-[#11223a] rounded-3xl px-6 py-5 flex justify-between items-center";
+            div.innerHTML = `
+                <div class="font-medium">${item.name}</div>
+                <div class="text-right">
+                    <div class="text-[#00f7ff] font-semibold">${item.qty} adet</div>
+                    <div class="text-xs text-[#94a3b8]">${totalValue} HM</div>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+   
     function runMainCalculation() {
         playInteractionSound();
-        const select = document.getElementById("main-item-select");
-        const cost = parseInt(select.value);
+        if (mainSelectedGivenItems.length === 0) {
+            alert("Lütfen verdiğin ürünleri seçin");
+            return;
+        }
+        let cost = mainSelectedGivenItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
         let received = 0;
         allSellables.forEach((item, i) => {
             const qty = parseInt(document.getElementById(`main-qty-${i}`).value) || 0;
@@ -666,10 +679,10 @@
         const net = received - cost;
         const panel = document.getElementById("main-result-panel");
         panel.classList.remove("hidden");
-        
+       
         document.getElementById("main-cost-value").textContent = cost + " HM";
         document.getElementById("main-received-value").textContent = received + " HM";
-        
+       
         const netEl = document.getElementById("main-net-value");
         if (net >= 0) {
             document.getElementById("main-result-emoji").innerHTML = "✅";
@@ -685,7 +698,7 @@
             netEl.style.color = "#f87171";
         }
     }
-    
+   
     // ====================== FİYAT LİSTESİ ======================
     function renderPriceListTable() {
         const tbody = document.getElementById("price-table-body");
@@ -704,7 +717,7 @@
             tbody.appendChild(row);
         });
     }
-    
+   
     function filterPriceList() {
         const term = document.getElementById("price-filter-input").value.toLowerCase();
         const rows = document.querySelectorAll("#price-table-body tr");
@@ -712,20 +725,8 @@
             row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
         });
     }
-    
+   
     // ====================== TAKAS KAYITLARI ======================
-    function populateTradeSelect() {
-        const select = document.getElementById("trade-select-main");
-        select.innerHTML = "";
-        allBuyItems.forEach((item) => {
-            const opt = document.createElement("option");
-            opt.value = item.price;
-            opt.setAttribute("data-name", item.name);
-            opt.textContent = `${item.name} — ${item.price} HM`;
-            select.appendChild(opt);
-        });
-    }
-    
     function renderTradeSellablesGrid() {
         const container = document.getElementById("trade-sellables-grid");
         container.innerHTML = "";
@@ -746,55 +747,67 @@
             container.appendChild(div);
         });
     }
-    
+   
     function increaseTradeQty(i) {
         const input = document.getElementById(`trade-qty-${i}`);
         let v = parseInt(input.value) || 0;
         input.value = v + 1;
     }
-    
+   
     function decreaseTradeQty(i) {
         const input = document.getElementById(`trade-qty-${i}`);
         let v = parseInt(input.value) || 0;
         if (v > 0) input.value = v - 1;
     }
-    
+   
     function selectTrader(el, name) {
         playInteractionSound();
         document.querySelectorAll("#content-tab-2 .flex > div").forEach(d => d.classList.remove("border-[#00f7ff]"));
         el.classList.add("border-[#00f7ff]");
         currentTraderSelection = name;
     }
-    
+   
     async function saveNewTrade() {
         if (!currentTraderSelection) {
             alert("Lütfen takası yapan kişiyi seçin");
             return;
         }
+        if (selectedGivenItems.length === 0) {
+            alert("Lütfen en az bir verdiğin ürün seçin");
+            return;
+        }
         playInteractionSound();
-        const select = document.getElementById("trade-select-main");
-        const itemName = select.options[select.selectedIndex].getAttribute("data-name");
-        const cost = parseInt(select.value);
+       
+        let givenTotal = 0;
+        const givenItemsStr = [];
+        selectedGivenItems.forEach((item) => {
+            givenTotal += item.qty * item.price;
+            givenItemsStr.push(`${item.qty}× ${item.name}`);
+        });
+       
         let total = 0;
-        const items = [];
+        const receivedItems = [];
         allSellables.forEach((s, i) => {
             const qty = parseInt(document.getElementById(`trade-qty-${i}`).value) || 0;
             if (qty > 0) {
                 total += qty * s.price;
-                items.push(`${qty}× ${s.name}`);
+                receivedItems.push(`${qty}× ${s.name}`);
             }
         });
-        const net = total - cost;
+       
+        const net = total - givenTotal;
+       
         const embed = {
             title: "Raven Z Takas Kaydı",
             color: net >= 0 ? 0x00f7ff : 0xf87171,
             fields: [
                 { name: "Kişi", value: currentTraderSelection },
-                { name: "Ürün", value: `${itemName} (${cost} HM)` },
-                { name: "Aldığı", value: items.join(", ") || "Yok" },
+                { name: "Verilen Ürünler", value: givenItemsStr.join(", ") },
+                { name: "Aldığı", value: receivedItems.join(", ") || "Yok" },
                 { name: "Net", value: net >= 0 ? `+${net}` : net }
             ]
         };
+       
         try {
             await fetch("https://discord.com/api/webhooks/1488431207518703726/e4nKgqO4ecxrDZllv3qsf6DBGwhBel3QUBq4ssXaYTnAAVnizjbS08D-5aVHkOL8tt-r", {
                 method: "POST",
@@ -804,7 +817,7 @@
             savedTradesArray.unshift({
                 date: new Date().toISOString(),
                 trader: currentTraderSelection,
-                item: itemName,
+                item: givenItemsStr.join(" + "),
                 net: net
             });
             localStorage.setItem("takas_hub_trades", JSON.stringify(savedTradesArray));
@@ -815,7 +828,7 @@
             alert("Gönderme hatası");
         }
     }
-    
+   
     function renderFullTradeHistory() {
         const container = document.getElementById("trade-history-list");
         container.innerHTML = "";
@@ -834,40 +847,147 @@
             container.appendChild(div);
         });
     }
-    
+   
+    // ====================== ORTAK ITEM SEÇME MODAL ======================
+    function openGivenItemsModal(forMain) {
+        playInteractionSound();
+        currentModalTarget = forMain ? "main" : "trade";
+        const modal = document.getElementById("item-select-modal");
+        modal.classList.remove("hidden");
+        modal.style.display = "flex";
+        renderModalGivenItems();
+    }
+   
+    function closeItemSelectModal() {
+        const modal = document.getElementById("item-select-modal");
+        modal.classList.add("hidden");
+        modal.style.display = "none";
+    }
+   
+    function renderModalGivenItems() {
+        const container = document.getElementById("modal-items-container");
+        if (!container) return;
+        container.innerHTML = "";
+        const targetArray = currentModalTarget === "main" ? mainSelectedGivenItems : selectedGivenItems;
+        allBuyItems.forEach((item, index) => {
+            const existing = targetArray.find(s => s.name === item.name);
+            const currentQty = existing ? existing.qty : 0;
+            const div = document.createElement("div");
+            div.className = "bg-[#0f1e33] border border-[#334155] rounded-3xl p-6 flex justify-between items-center shadow-inner";
+            div.innerHTML = `
+                <div class="flex-1">
+                    <div class="font-medium text-lg">${item.name}</div>
+                    <div class="text-[#00f7ff] text-sm">${item.price} HM / adet</div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="decreaseModalQty(${index}); playInteractionSound()" class="w-9 h-9 flex items-center justify-center text-3xl border border-[#334155] rounded-2xl hover:bg-[#334155]">-</button>
+                    <input id="modal-qty-${index}" type="text" value="${currentQty}" class="w-14 text-center bg-transparent text-3xl font-semibold" style="outline: none;">
+                    <button onclick="increaseModalQty(${index}); playInteractionSound()" class="w-9 h-9 flex items-center justify-center text-3xl border border-[#334155] rounded-2xl hover:bg-[#334155]">+</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+   
+    function increaseModalQty(index) {
+        const input = document.getElementById(`modal-qty-${index}`);
+        if (input) {
+            let val = parseInt(input.value) || 0;
+            input.value = val + 1;
+        }
+    }
+   
+    function decreaseModalQty(index) {
+        const input = document.getElementById(`modal-qty-${index}`);
+        if (input) {
+            let val = parseInt(input.value) || 0;
+            if (val > 0) input.value = val - 1;
+        }
+    }
+   
+    function confirmSelectedItems() {
+        playInteractionSound();
+        const targetArray = currentModalTarget === "main" ? mainSelectedGivenItems : selectedGivenItems;
+        targetArray.length = 0;
+        allBuyItems.forEach((item, i) => {
+            const input = document.getElementById(`modal-qty-${i}`);
+            if (input) {
+                const qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    targetArray.push({
+                        name: item.name,
+                        qty: qty,
+                        price: item.price
+                    });
+                }
+            }
+        });
+        closeItemSelectModal();
+        if (currentModalTarget === "main") {
+            renderMainSelectedGivenItems();
+            calculateMainTotalGiven();
+        } else {
+            renderSelectedGivenItems();
+        }
+    }
+   
+    function renderSelectedGivenItems() {
+        const container = document.getElementById("given-items-list");
+        if (!container) return;
+        container.innerHTML = "";
+        if (selectedGivenItems.length === 0) {
+            container.innerHTML = `<p class="text-[#64748b] italic text-center py-8">Henüz hiçbir ürün seçilmedi. "Item Seç" butonuna tıklayın.</p>`;
+            return;
+        }
+        selectedGivenItems.forEach((item) => {
+            const totalValue = item.qty * item.price;
+            const div = document.createElement("div");
+            div.className = "history-item bg-[#11223a] rounded-3xl px-6 py-5 flex justify-between items-center";
+            div.innerHTML = `
+                <div class="font-medium">${item.name}</div>
+                <div class="text-right">
+                    <div class="text-[#00f7ff] font-semibold">${item.qty} adet</div>
+                    <div class="text-xs text-[#94a3b8]">${totalValue} HM</div>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+   
     // ====================== İSTATİSTİK GÜNCELLEME ======================
     function refreshAllStats() {
         const totalTrades = savedTradesArray.length;
         let totalProfit = 0;
         let positiveCount = 0;
         let maxSingle = 0;
-        
+       
         savedTradesArray.forEach((t) => {
             totalProfit += t.net;
             if (t.net >= 0) positiveCount++;
             if (t.net > maxSingle) maxSingle = t.net;
         });
-        
+       
         const rate = totalTrades > 0 ? Math.round((positiveCount / totalTrades) * 100) : 0;
-        
+       
         document.getElementById("stat-month-profit").textContent = `+${totalProfit}`;
         document.getElementById("stat-total-trades").textContent = totalTrades;
         document.getElementById("stat-profit-rate").textContent = `${rate}%`;
         document.getElementById("stat-best-trade").textContent = `+${maxSingle}`;
     }
-    
+   
     // ====================== SAYFA YÜKLENME ======================
     window.onload = function() {
         initializeBackgroundCanvas();
-        populateMainItemSelect();
         renderMainSellables();
         renderPriceListTable();
-        populateTradeSelect();
         renderTradeSellablesGrid();
         renderFullTradeHistory();
         refreshAllStats();
+        renderMainSelectedGivenItems();
+        renderSelectedGivenItems();
+        calculateMainTotalGiven();
         console.log("%cRaven Z Takas Hub - Modern Dark Tema yüklendi", "color:#00f7ff;font-size:15px");
-        console.log("Tüm fonksiyonlar aktif, istatistikler dinamik olarak güncelleniyor");
+        console.log("Çoklu verdiğin ürün desteği aktif - Hem hesap makinesinde hem takas kayıtlarında");
     };
 </script>
 </body>
